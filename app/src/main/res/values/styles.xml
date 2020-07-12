@@ -10,9 +10,10 @@
 
     <style name="movieNameStyle">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">21sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/cairo_semibold</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="movieDescriptionStyle">

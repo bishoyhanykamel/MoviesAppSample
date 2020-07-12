@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             override fun run() {
                 for (movie in topRatedMovies)
                     Log.e("MovieNames", "Name: ${movie.title} Rate: ${movie.vote_average}")
+                Log.e("MovieNames", "number of movies: ${topRatedMovies.size}")
             }
         }, 7500)
     }
@@ -62,11 +63,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.mostViewed_menuItem -> {
-                Toast.makeText(this, "Most viewed movies", Toast.LENGTH_SHORT).show()
+                displayMovieList(popularMovies)
                 true
             }
             R.id.topRated_menuItem -> {
-                Toast.makeText(this, "Top rated movies", Toast.LENGTH_SHORT).show()
+                displayMovieList(topRatedMovies)
                 true
             }
             R.id.recentlyViewed_menuItem -> {
