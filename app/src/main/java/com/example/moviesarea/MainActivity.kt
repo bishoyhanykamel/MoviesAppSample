@@ -13,16 +13,18 @@ import com.example.moviesarea.recycler.MovieAdapter
 class MainActivity : AppCompatActivity() {
 
     private val API_KEY = "fcc41d51768165fb5baffadb846dfb71"
-
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // setting up viewBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Setting the adapter for the recycler view
         binding.mainRecyclerView.adapter = MovieAdapter(getMoviesList())
 
+        // Setting the toolbar for the app to use the overridden functions
         setSupportActionBar(binding.mainToolbar)
     }
 
@@ -37,12 +39,13 @@ class MainActivity : AppCompatActivity() {
         return list
     }
 
+    // inflating the menu into the toolbar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.movie_view_menu, menu)
-        println("LOLHAHA")
         return true
     }
 
+    // function that specifies onClicks for menu items
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.mostViewed_menuItem -> {
