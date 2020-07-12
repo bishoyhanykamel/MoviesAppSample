@@ -2,6 +2,10 @@ package com.example.moviesarea
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import com.example.moviesarea.databinding.ActivityMainBinding
 import com.example.moviesarea.models.Movie
 import com.example.moviesarea.recycler.MovieAdapter
@@ -18,8 +22,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.mainRecyclerView.adapter = MovieAdapter(getMoviesList())
-    }
 
+        setSupportActionBar(binding.mainToolbar)
+    }
 
     private fun getMoviesList(): List<Movie> {
         val list = ArrayList<Movie>()
@@ -30,5 +35,29 @@ class MainActivity : AppCompatActivity() {
         list.add(Movie("Shawshank Redepmtion", 2.4f))
         list.add(Movie("Shawshank Redepmtion", 2.0f))
         return list
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.movie_view_menu, menu)
+        println("LOLHAHA")
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.mostViewed_menuItem -> {
+                Toast.makeText(this, "Most viewed movies", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.topRated_menuItem -> {
+                Toast.makeText(this, "Top rated movies", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.recentlyViewed_menuItem -> {
+                Toast.makeText(this, "Recently viewed", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

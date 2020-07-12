@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menuLayout">
+
+    <item
+        android:id="@+id/topRated_menuItem"
+        android:title="Top rated"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/mostViewed_menuItem"
+        android:title="Most viewed"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/recentlyViewed_menuItem"
+        android:title="Recently viewed"
+        app:showAsAction="never" />
+</menu>
