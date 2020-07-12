@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesarea.R
 import com.example.moviesarea.databinding.ItemMovieLayoutBinding
 import com.example.moviesarea.models.Movie
+import com.squareup.picasso.Picasso
 
 
 class MovieAdapter(val list: List<Movie>) :
@@ -30,9 +31,10 @@ class MovieAdapter(val list: List<Movie>) :
     // ==========================================================================================\\
     inner class MovieItem(movieView: View): RecyclerView.ViewHolder(movieView) {
         fun bindData(movie: Movie) {
-            binding.movieNameTextView.text = movie.name
-            binding.movieRateRatingBar.rating = movie.rating
-            binding.movieImageView.setImageResource(movie.imageRes)
+            binding.movieNameTextView.text = movie.title
+            binding.movieRateRatingBar.rating = movie.vote_average / 2.0f
+            Picasso.get().load("https://image.tmdb.org/t/p/w500/${movie.poster_path}").
+            into(binding.movieImageView)
         }
     }
 
