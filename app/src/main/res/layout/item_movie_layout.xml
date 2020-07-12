@@ -23,27 +23,23 @@
 
     <TextView
         android:id="@+id/movieName_textView"
+        style="@style/movieNameStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:text="Shawshank Redemption"
+        app:layout_constraintBottom_toTopOf="@id/movieRate_ratingBar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/movie_imageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/movieRate_ratingBar"
-        style="@style/movieNameStyle"/>
+        tools:text="Shawshank Redemption" />
 
-    <RatingBar
-        android:id="@+id/movieRate_ratingBar"
-        android:layout_width="wrap_content"
+    <include
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/movieName_textView"
+        android:layout_width="wrap_content"
+        android:id="@+id/movieRate_ratingBar"
+        app:layout_constraintBottom_toBottomOf="@id/movie_imageView"
         app:layout_constraintStart_toStartOf="@id/movieName_textView"
         app:layout_constraintEnd_toEndOf="@id/movieName_textView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:stepSize="0.1"
-        android:max="5"
-        android:numStars="5"
-        tools:rating="3.3"/>
+        layout="@layout/rating_bar_component" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

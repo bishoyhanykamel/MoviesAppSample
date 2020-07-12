@@ -1,11 +1,12 @@
 package com.example.moviesarea
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesarea.databinding.ActivityMainBinding
 import com.example.moviesarea.models.Movie
 import com.example.moviesarea.models.MovieResponse
@@ -15,7 +16,6 @@ import com.example.moviesarea.recycler.MovieAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,13 +44,8 @@ class MainActivity : AppCompatActivity() {
         // Setting the toolbar for the app to use the overridden functions
         setSupportActionBar(binding.mainToolbar)
 
-        Timer().schedule(object : TimerTask() {
-            override fun run() {
-                for (movie in topRatedMovies)
-                    Log.e("MovieNames", "Name: ${movie.title} Rate: ${movie.vote_average}")
-                Log.e("MovieNames", "number of movies: ${topRatedMovies.size}")
-            }
-        }, 7500)
+        binding.mainRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
     // inflating the menu into the toolbar
@@ -112,6 +107,6 @@ class MainActivity : AppCompatActivity() {
 
     // Setting the adapter for the recycler view with a specified list of movies
     private fun displayMovieList(list: List<Movie>) {
-        binding.mainRecyclerView.adapter = MovieAdapter(list)
+        binding.mainRecyclerView.adapter = MovieAdapter(this, list)
     }
 }
