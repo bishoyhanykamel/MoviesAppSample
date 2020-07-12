@@ -8,6 +8,8 @@ import com.example.moviesarea.recycler.MovieAdapter
 
 class MainActivity : AppCompatActivity() {
 
+    private val API_KEY = "fcc41d51768165fb5baffadb846dfb71"
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
