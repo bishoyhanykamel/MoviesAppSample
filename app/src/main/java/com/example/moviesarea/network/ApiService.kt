@@ -3,6 +3,7 @@ package com.example.moviesarea.network
 import com.example.moviesarea.models.MovieResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -19,4 +20,9 @@ interface ApiService {
         @Query("language") lang: String = "en-US"
     ): Call<MovieResponse>
 
+    @GET("movie/")
+    fun getMovie(
+        @Path("${movieId}") movieId: Int,
+        @Query("api_key") apiKey: String
+    )
 }

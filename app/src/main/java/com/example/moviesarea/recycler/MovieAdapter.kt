@@ -12,7 +12,7 @@ import com.example.moviesarea.models.Movie
 import com.squareup.picasso.Picasso
 
 
-class MovieAdapter(val context: Context, val list: List<Movie>) :
+class MovieAdapter(val context: Context, val list: List<Movie>, val recentList: ArrayList<Movie>) :
     RecyclerView.Adapter<MovieAdapter.MovieItem>() {
 
     init {
@@ -59,6 +59,10 @@ class MovieAdapter(val context: Context, val list: List<Movie>) :
                 intent.putExtra("average_rate", movie.vote_average)
                 context.startActivity(intent)
             }
+            if (recentList.contains(movie))
+                recentList.remove(movie)
+
+            recentList.add(0,movie)
         }
     }
 

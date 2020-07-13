@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
     private val API_KEY = "fcc41d51768165fb5baffadb846dfb71"
     private lateinit var binding: ActivityMainBinding
     private lateinit var apiService: ApiService
-    private var topRatedMovies: List<Movie> = listOf<Movie>()
-    private var popularMovies: List<Movie> = listOf<Movie>()
-
+    private lateinit var topRatedMovies: List<Movie>
+    private lateinit var popularMovies: List<Movie>
+    private var recentlyViewed: ArrayList<Movie> = arrayListOf()
 
     // ========================= [ OVERRIDEN FUNCTIONS] ===========================================
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +46,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.mainRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(this, "${intent.getIntExtra("id", 0)}", Toast.LENGTH_SHORT)
+            .show()
     }
 
     // inflating the menu into the toolbar
@@ -107,6 +113,6 @@ class MainActivity : AppCompatActivity() {
 
     // Setting the adapter for the recycler view with a specified list of movies
     private fun displayMovieList(list: List<Movie>) {
-        binding.mainRecyclerView.adapter = MovieAdapter(this, list)
+        binding.mainRecyclerView.adapter = MovieAdapter(this, list, recentlyViewed)
     }
 }
