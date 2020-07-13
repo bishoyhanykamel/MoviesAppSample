@@ -44,7 +44,8 @@ class MovieAdapter(val context: Context, val list: List<Movie>, val recentList: 
     // ==========================================================================================\\
     inner class MovieItem(movieView: View) : RecyclerView.ViewHolder(movieView) {
         fun bindData(movie: Movie) {
-            movie.vote_average = movie.vote_average / 2.0f
+            if (movie.vote_average > 5)
+                movie.vote_average = movie.vote_average / 2.0f
             binding.movieNameTextView.text = movie.title
             binding.movieRateRatingBar.root.rating = movie.vote_average
             Picasso.get()
@@ -52,6 +53,10 @@ class MovieAdapter(val context: Context, val list: List<Movie>, val recentList: 
                 .into(binding.movieImageView)
 
             binding.root.setOnClickListener {
+                if (recentList.isNotEmpty())
+                    if (recentList.contains(movie))
+                        recentList.remove(movie)
+                recentList.add(movie)
                 val intent = Intent(context, MovieDetails::class.java)
                 intent.putExtra("poster_path", movie.poster_path)
                 intent.putExtra("name", movie.title)
@@ -59,10 +64,7 @@ class MovieAdapter(val context: Context, val list: List<Movie>, val recentList: 
                 intent.putExtra("average_rate", movie.vote_average)
                 context.startActivity(intent)
             }
-            if (recentList.contains(movie))
-                recentList.remove(movie)
 
-            recentList.add(0,movie)
         }
     }
 

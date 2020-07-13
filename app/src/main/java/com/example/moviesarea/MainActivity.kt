@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesarea.databinding.ActivityMainBinding
@@ -48,12 +47,6 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
-    override fun onResume() {
-        super.onResume()
-        Toast.makeText(this, "${intent.getIntExtra("id", 0)}", Toast.LENGTH_SHORT)
-            .show()
-    }
-
     // inflating the menu into the toolbar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.movie_view_menu, menu)
@@ -72,7 +65,23 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.recentlyViewed_menuItem -> {
-                Toast.makeText(this, "Recently viewed", Toast.LENGTH_SHORT).show()
+                recentlyViewed.trimToSize()
+                val recentList = ArrayList<Movie>()
+                mainLoop@for (counter in (recentlyViewed.size - 1) downTo 0) {
+                    for (topRatedMovie in topRatedMovies) {
+                        if (topRatedMovie.id == recentlyViewed[counter].id) {
+                            recentList.add(topRatedMovie)
+                            continue@mainLoop
+                        }
+                        for (popularMovie in popularMovies) {
+                            if (popularMovie.id == recentlyViewed[counter].id) {
+                                recentList.add(popularMovie)
+                                continue@mainLoop
+                            }
+                        }
+                    }
+                }
+                displayMovieList(recentList)
                 true
             }
             else -> super.onOptionsItemSelected(item)

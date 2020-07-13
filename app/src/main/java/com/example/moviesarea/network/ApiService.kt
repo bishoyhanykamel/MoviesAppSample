@@ -20,9 +20,9 @@ interface ApiService {
         @Query("language") lang: String = "en-US"
     ): Call<MovieResponse>
 
-    @GET("movie/")
-    fun getMovie(
-        @Path("${movieId}") movieId: Int,
-        @Query("api_key") apiKey: String
-    )
+//    @GET("movie/")
+//    fun getMovie(
+//        @Path("${movieId}") movieId: Int,
+//        @Query("api_key") apiKey: String
+//    )
 }
